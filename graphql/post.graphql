@@ -1,0 +1,17 @@
+extend type Query {
+  posts(
+    title: String @where(operator: "like")
+  ): [Post!]! @paginate(defaultCount: 10)
+
+  post(id: ID @eq ): Post @find
+}
+
+type Post {
+  id: ID!
+  title: String!
+  content: String!
+  image: String!
+  author: User! @belongsTo
+  created_at: DateTime!
+  updated_at: DateTime!
+}
